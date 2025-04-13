@@ -10,6 +10,7 @@
     <link rel="icon" type="image/x-icon" href="favicon.ico" />
     <link rel="stylesheet" href="ankareport.css" />
     <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="tab.css" />
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.12.3/ace.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
@@ -18,53 +19,61 @@
     <script src="layout.js"></script>
     <script src="data-source.js"></script>
     <script src="data.js"></script>
+    <script src="tab.js"></script>
   </head>
   <body>
     <div class="container">
-      <div class="panel">
-        <div class="panel-header">
-          <span style="flex: 1">Layout</span>
-          <input
-            id="load-layout-from-designer"
-            type="button"
-            value="Load From Designer"
-            onclick="loadLayoutFromDesigner()"
-          />
-          <input
-            id="switch-layout"
-            type="button"
-            value="Show"
-            onclick="switchLayout()"
-          />
-        </div>
-        <div class="panel-body">
-          <div id="layout-editor"></div>
-        </div>
-      </div>
-
-      <div class="content">
-        <div id="designer"></div>
-
-        <input
-          id="export-to-pdf-button"
-          type="button"
-          value="Export To Pdf"
-          onclick="exportToPdf()"
-        />
-        <div id="report"></div>
-      </div>
-
-      <div id="data-source-panel" class="panel">
-        <div class="panel-header">Data Source</div>
-        <div class="panel-body">
-          <div id="data-source-editor"></div>
-        </div>
-      </div>
-
-      <div id="data-panel" class="panel">
-        <div class="panel-header">Data</div>
-        <div class="panel-body">
-          <div id="data-editor"></div>
+      <div class="container--tabs">
+        <ul class="nav nav-tabs">
+          <li class="active">
+            <a href="#tab-1">Designer</a>
+          </li>
+          <li class="">
+            <a href="#tab-2">Layout</a>
+          </li>
+          <li class="">
+            <a href="#tab-3">Dataset</a>
+          </li>
+          <li class="">
+            <a href="#tab-4">Data</a>
+          </li>
+        </ul>
+        <div class="tab-content">
+          <div id="tab-1" class="tab-pane active">
+            <div id="designer"></div>
+          </div>
+          <div id="tab-2" class="tab-pane">
+            <div class="panel-header" style="padding: 0.5rem;">
+              <span style="flex: 1">Layout</span>
+              <input
+                id="load-layout-from-designer"
+                type="button"
+                value="Load From Designer"
+                onclick="loadLayoutFromDesigner()"
+              />
+              <input
+                id="switch-layout"
+                type="button"
+                value="Show"
+                onclick="switchLayout()"
+              />
+            </div>
+            <div class="panel-body" style="flex: 1;">
+              <div id="layout-editor"></div>
+            </div>
+          </div>
+          <div id="tab-3" class="tab-pane">
+            <div class="panel-header" style="padding: 0.5rem;">Data Source</div>
+            <div class="panel-body" style="flex: 1;">
+              <div id="data-source-editor"></div>
+            </div>
+          </div>
+          <div id="tab-4" class="tab-pane">
+            <div class="panel-header" style="padding: 0.5rem;">Data</div>
+            <div class="panel-body" style="flex: 1;">
+              <div id="data-editor"></div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -77,15 +86,12 @@
       var designer = null;
 
       const designerDiv = document.getElementById("designer");
-      const rendererDiv = document.getElementById("report");
 
       const loadLayoutFromDesignerButton = document.getElementById(
         "load-layout-from-designer",
       );
       const switchLayoutButton = document.getElementById("switch-layout");
       const dataSourcePanel = document.getElementById("data-source-panel");
-      const dataPanel = document.getElementById("data-panel");
-      const exportToPdfButton = document.getElementById("export-to-pdf-button");
 
       const layoutEditor = ace.edit("layout-editor");
       layoutEditor.session.setMode("ace/mode/json");
@@ -117,55 +123,25 @@
         } catch {}
       };
 
-      const refreshReport = () => {
-        try {
-          const layout = JSON.parse(layoutEditor.getValue());
-          const data = JSON.parse(dataEditor.getValue());
-
-          rendererDiv.innerHTML = "";
-
-          const renderer = AnkaReport.render({
-            element: rendererDiv,
-            layout,
-            data,
-          });
-        } catch {}
-      };
-
       layoutEditor.on("change", () => {
         refreshDesigner();
-        refreshReport();
       });
       dataSourceEditor.on("change", () => refreshDesigner());
-      dataEditor.on("change", () => refreshReport());
 
       refreshDesigner();
-      refreshReport();
-
-      const exportToPdf = () => {
-        html2pdf().from(rendererDiv).save("report.pdf");
-      };
 
       const showDesigner = () => {
         page = 0;
         switchLayoutButton.value = "Show Report";
         designerDiv.style.display = null;
-        rendererDiv.style.display = "none";
         loadLayoutFromDesignerButton.style.display = null;
-        exportToPdfButton.style.display = "none";
-        dataSourcePanel.style.display = null;
-        dataPanel.style.display = "none";
       };
 
       const showReport = () => {
         page = 1;
         switchLayoutButton.value = "Show Designer";
         designerDiv.style.display = "none";
-        rendererDiv.style.display = null;
         loadLayoutFromDesignerButton.style.display = "none";
-        exportToPdfButton.style.display = null;
-        dataSourcePanel.style.display = "none";
-        dataPanel.style.display = null;
       };
 
       showDesigner();

@@ -23,13 +23,13 @@ body {
   border: 1px solid #cccccc;
 }
 
-.panel > .panel-header {
+.panel>.panel-header {
   border-bottom: 1px solid #cccccc;
   padding: 10px;
   display: flex;
 }
 
-.panel > .panel-body {
+.panel>.panel-body {
   flex: 1;
 }
 
@@ -42,7 +42,7 @@ body {
   flex: 1;
 }
 
-.content > div {
+.content>div {
   background-color: white;
   border: 1px solid #cccccc;
 }

@@ -12,8 +12,15 @@ import Sidebar from "./sidebar/sidebar";
 import ToolbarLeftMenu from "./toolbar/toolbarLeftMenu";
 import ToolbarTopMenu from "./toolbar/toolbarTopMenu";
 
+import "bootstrap/dist/css/bootstrap.min.css";
+import { Tooltip } from "bootstrap";
 import "./designer.css";
 import { ChangeStack } from "./change-stack";
+
+window.onload = () => {
+  const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
+  [...tooltipTriggerList].map(tooltipTriggerEl => new Tooltip(tooltipTriggerEl));
+}
 
 export interface DataSourceChangeEventArgs {
   dataSource: DataSourceTreeItemData[];

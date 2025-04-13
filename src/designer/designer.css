@@ -1,6 +1,6 @@
 .anka-designer {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   font-family: var(--font-family);
   font-size: var(--font-size);
 }

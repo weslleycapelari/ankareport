@@ -1,0 +1,14 @@
+element-properties {
+    width: 0;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    background-color: #FFFFFF;
+    box-shadow: #d7d7d7 -2px 2px 5px;
+    transition: 0.3s;
+}
+
+element-properties[ag-state="expanded"] {
+    width: 250px;
+}

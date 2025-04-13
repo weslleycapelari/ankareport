@@ -1,0 +1,25 @@
+anka-report-designer {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    position: relative;
+}
+
+.designer-body {
+    padding-left: 3rem;
+    display: flex;
+    flex-grow: 1;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.designer-body .editor-area {
+    display: flex;
+    flex-direction: row;
+    flex-grow: 1;
+    position: relative;
+    background-color: #EFEFEF;
+    box-shadow: #CDCDCD 0px 0px 5px 0px inset;
+    padding: 1rem;
+}

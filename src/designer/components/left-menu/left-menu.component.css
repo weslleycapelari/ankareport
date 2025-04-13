@@ -1,0 +1,77 @@
+left-menu {
+    background-color: var(--bs-primary);
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    overflow: hidden;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    transition: 0.3s;
+    z-index: 100;
+    width: 3rem;
+}
+
+left-menu hr {
+    margin: 0 0.5rem;
+}
+
+left-menu[ag-state="expanded"] {
+    width: 180px;
+}
+
+left-menu .logo {
+    width: 3rem;
+    height: 2.625rem;
+    padding: 0.5rem 0.75rem;
+}
+
+left-menu .logo svg {
+    width: 100%;
+    height: 100%;
+}
+
+left-menu .list-group-item {
+    padding: 0;
+    background-color: inherit !important;
+    border: 0;
+}
+
+left-menu .list-group {
+    border-radius: 0;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+left-menu .list-group button {
+    display: inline-flex;
+    padding: 0.75rem !important;
+    gap: 0.5rem;
+    text-align: left;
+    width: 100%;
+    padding: 0.5rem;
+    border: none;
+    border-radius: 0;
+    transition: 0.3s;
+    background-color: inherit;
+    color: inherit;
+}
+
+left-menu .list-group button:hover,
+left-menu .list-group button:focus {
+    border: none;
+    box-shadow: none;
+}
+
+left-menu .list-group button .icon {
+    height: 1.5rem;
+    width: 1.5rem;
+}
+
+left-menu .list-group button .text {
+    flex: 1;
+    overflow: hidden;
+    white-space: nowrap;
+}

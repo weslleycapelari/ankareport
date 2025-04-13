@@ -1,0 +1,31 @@
+top-bar {
+    padding: 0 !important;
+    background-color: #FFFFFF;
+}
+
+top-bar .navbar-nav {
+    width: 100%;
+    flex-direction: row !important;
+}
+
+top-bar .navbar-nav .nav-item .dropdown-menu {
+    position: absolute !important;
+}
+
+top-bar .navbar-nav .nav-item .nav-link {
+    padding-right: var(--bs-navbar-nav-link-padding-x);
+    padding-left: var(--bs-navbar-nav-link-padding-x);
+    color: #333;
+}
+
+top-bar .navbar-nav .nav-item .nav-link.title {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    flex: 1;
+    width: 1px;
+}
+
+top-bar .navbar-nav .nav-item .nav-link:hover {
+    color: var(--bs-primary);
+}
